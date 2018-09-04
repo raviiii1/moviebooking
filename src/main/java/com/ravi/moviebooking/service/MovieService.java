@@ -11,5 +11,9 @@ public interface MovieService {
 	MovieDto getMovie(Long id);
 
 	List<MovieDto> getMovies(List<Long> movieIds);
+
+	MovieDto putMovie(MovieDto movieDto);
+
+	boolean deleteMovie(Long id);
 	
 }

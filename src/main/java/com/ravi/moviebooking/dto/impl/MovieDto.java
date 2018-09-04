@@ -15,16 +15,13 @@ public class MovieDto implements Dto{
 	
 	@JsonProperty("running_time_minutes")
 	private Integer runningTimeInMinutes;
-	private Boolean active;
-	
-	@JsonProperty("show_id")
-	private Long showId;
+	private boolean active;
 	
 	public boolean isActive() {
 		return active;
 	}
 	
-	public void isActive(Boolean active) {
+	public void isActive(boolean active) {
 		this.active = active;
 	}
 }

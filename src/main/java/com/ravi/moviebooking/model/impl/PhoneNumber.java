@@ -1,5 +1,6 @@
 package com.ravi.moviebooking.model.impl;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ravi.moviebooking.model.Bo;
 
 import lombok.Data;
@@ -8,6 +9,7 @@ import lombok.Data;
 public class PhoneNumber implements Bo{
 
 	private static final String DEFAULT_COUNTRY_CODE = "+91";
+	@JsonProperty("country_code")
 	private String countryCode;
 	private String number;
 
@@ -29,12 +31,12 @@ public class PhoneNumber implements Bo{
 
 	private boolean isValidNumber(String number2) {
 		// TODO number validation code
-		return false;
+		return true;
 	}
 
 	private boolean isValidCountryCode(String countryCode2) {
 		// TODO country validation code
-		return false;
+		return true;
 	}
 
 	@Override

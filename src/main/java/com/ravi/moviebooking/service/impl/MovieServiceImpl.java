@@ -40,4 +40,21 @@ public class MovieServiceImpl implements MovieService {
 		return movies.parallelStream().map(movie -> converter.convertToDto(movie)).collect(Collectors.toList());
 	}
 
+	@Override
+	public MovieDto putMovie(MovieDto movieDto) {
+		movieDto.setId(null);
+		return converter.convertToDto(repository.save(converter.convertToBo(movieDto)));
+	}
+
+	@Override
+	public boolean deleteMovie(Long id) {
+		Movie movie = repository.findById(id).get();
+		if (movie != null) {
+			movie.setActive(false);
+			repository.save(movie);
+			return true;
+		}
+		return false;
+	}
+
 }

@@ -3,6 +3,7 @@ package com.ravi.moviebooking.service.impl;
 import java.io.IOException;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -29,6 +30,16 @@ public class JsonConverterUtility {
 		}
 		return objectToString;
 	}
+	
+	public static <T> T convertToObject(TypeReference<T> typeReference, String json) {
+        T object = null;
+        try {
+            object = getObjectMapper().readValue(json, typeReference);
+        } catch (IOException ex) {
+            
+        }
+        return object;
+    }
 
 	private static ObjectMapper getObjectMapper() {
 		if (MAPPER == null) {

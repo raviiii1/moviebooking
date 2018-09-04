@@ -15,28 +15,30 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.ravi.moviebooking.model.Bo;
-import com.ravi.moviebooking.service.impl.SeatMarshller;
+import com.ravi.moviebooking.service.impl.SeatListMarshler;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "booking")
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class Booking implements Bo{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@Column(name = "use_id")
+	@Column(name = "user_id")
 	private Long userId;
 	
 	@Column(name = "show_id")
 	private Long showId;
 	
-	@Convert(converter = SeatMarshller.class)
+	@Convert(converter = SeatListMarshler.class)
 	@Column(name = "seats")
 	private List<Seat> seats;
 	

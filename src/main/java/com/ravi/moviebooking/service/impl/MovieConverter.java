@@ -11,12 +11,12 @@ public class MovieConverter implements Converter<Movie, MovieDto> {
 
 	@Override
 	public MovieDto convertToDto(Movie bo) {
-		return new MovieDto(bo.getId(), bo.getName(), bo.getRunningTimeInMinutes(), bo.getActive(), bo.getShowId());
+		return new MovieDto(bo.getId(), bo.getName(), bo.getRunningTimeInMinutes(), true);
 	}
 
 	@Override
 	public Movie convertToBo(MovieDto dto) {
-		return new Movie(dto.getId(), dto.getName(), dto.getRunningTimeInMinutes(), dto.getActive(), dto.getShowId());
+		return new Movie(dto.getId(), dto.getName(), dto.getRunningTimeInMinutes(), true);
 	}
 
 }

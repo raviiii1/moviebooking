@@ -9,10 +9,11 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ravi.moviebooking.dto.impl.SeatMatrixDto;
+import com.ravi.moviebooking.dto.impl.CinemaHallDto;
 import com.ravi.moviebooking.dto.impl.ShowDto;
 import com.ravi.moviebooking.model.impl.Show;
 import com.ravi.moviebooking.repository.ShowRepository;
+import com.ravi.moviebooking.service.CinemaHallService;
 import com.ravi.moviebooking.service.MovieService;
 import com.ravi.moviebooking.service.ShowService;
 
@@ -26,38 +27,32 @@ public class ShowServiceImpl implements ShowService {
 	ShowConverter showConverter;
 
 	@Autowired
-	SeatMatrixConverter matrixConverter;
+	CinemaHallService cinemaHallService;
 
 	@Autowired
 	MovieService movieService;
-	
+
 	@Override
 	public ShowDto putShow(ShowDto dto) {
 		dto.setId(null);
+		dto.setBooked(null);
+		CinemaHallDto cinemaHallDto = cinemaHallService.getCinemaHall(dto.getCinemaHallId());
+		if (cinemaHallDto != null)
+			dto.setAllAvailable(cinemaHallDto.getRowCount(), cinemaHallDto.getColumnCount());
+		return showConverter.convertToDto(repository.save(showConverter.convertToBo(dto)));
+	}
+	
+	@Override
+	public ShowDto updateShow(ShowDto dto) {
 		return showConverter.convertToDto(repository.save(showConverter.convertToBo(dto)));
 	}
 
 	@Override
 	public ShowDto getShow(Long showId) {
-
 		Show show = repository.findById(showId).get();
-
 		if (show == null)
 			return null;
-
 		return showConverter.convertToDto(show);
-	}
-
-	@Override
-	public SeatMatrixDto getShowSeatMatrix(Long showId) {
-
-		SeatMatrixDto matrix = null;
-		Show show = repository.findById(showId).get();
-
-		if (show != null)
-			matrix = matrixConverter.convertToDto(show.getSeatMatrix());
-
-		return matrix;
 	}
 
 	@Override

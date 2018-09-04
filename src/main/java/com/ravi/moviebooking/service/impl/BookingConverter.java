@@ -11,7 +11,7 @@ public class BookingConverter implements Converter<Booking, BookingDto>{
 
 	@Override
 	public BookingDto convertToDto(Booking bo) {
-		return new BookingDto(bo.getId(), bo.getUserId(), bo.getShowId(), bo.getSeats(), bo.getPrice(), bo.getPrice()*bo.getSeats().size());
+		return new BookingDto(bo.getId(), bo.getUserId(), bo.getShowId(), bo.getSeats(), bo.getPrice());
 	}
 
 	@Override

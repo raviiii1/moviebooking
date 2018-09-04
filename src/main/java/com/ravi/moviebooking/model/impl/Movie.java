@@ -9,15 +9,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import com.ravi.moviebooking.model.Bo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "movie")
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class Movie implements Bo{
 
 	@Id
@@ -31,14 +36,13 @@ public class Movie implements Bo{
 	private Integer runningTimeInMinutes;
 	
 	@Column(name = "active")
-	private Boolean active;
+	private boolean active;
 	
-	@Column(name = "show_id")
-	private Long showId;
-	
+	@CreationTimestamp
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
 
+	@UpdateTimestamp
 	@Column(name = "updated_at")
 	private LocalDateTime updatedAt;
 	
@@ -46,16 +50,15 @@ public class Movie implements Bo{
 		return active;
 	}
 	
-	public void isActive(Boolean active) {
+	public void isActive(boolean active) {
 		this.active = active;
 	}
 
-	public Movie(Long id, String name, Integer runningTimeInMinutes, Boolean active, Long showId) {
+	public Movie(Long id, String name, Integer runningTimeInMinutes, boolean active) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.runningTimeInMinutes = runningTimeInMinutes;
 		this.active = active;
-		this.showId = showId;
 	}
 }

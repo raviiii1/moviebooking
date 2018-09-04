@@ -15,7 +15,7 @@ public class BookingDto implements Dto{
 
 	private Long id;
 
-	@JsonProperty("use_id")
+	@JsonProperty("user_id")
 	private Long userId;
 
 	@JsonProperty("show_id")
@@ -23,6 +23,5 @@ public class BookingDto implements Dto{
 
 	private List<Seat> seats;
 	private double price;
-	private double pricePerSeat;
 
 }

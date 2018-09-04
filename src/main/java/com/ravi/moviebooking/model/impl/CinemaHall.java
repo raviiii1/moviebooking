@@ -16,10 +16,12 @@ import com.ravi.moviebooking.model.Bo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "cinema_hall")
 public class CinemaHall implements Bo{
 

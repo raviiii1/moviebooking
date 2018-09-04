@@ -14,11 +14,13 @@ import com.ravi.moviebooking.service.impl.PhoneNumberMarshller;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "user")
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class User implements Bo{
 	
 	@Id

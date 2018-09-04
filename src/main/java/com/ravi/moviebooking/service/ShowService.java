@@ -4,14 +4,11 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-import com.ravi.moviebooking.dto.impl.SeatMatrixDto;
 import com.ravi.moviebooking.dto.impl.ShowDto;
 
 public interface ShowService {
 
 	ShowDto getShow(Long showId);
-
-	SeatMatrixDto getShowSeatMatrix(Long showId);
 
 	ShowDto putShow(ShowDto show);
 
@@ -24,5 +21,7 @@ public interface ShowService {
 	List<ShowDto> searchShows(LocalDate date);
 
 	List<ShowDto> getAllShows();
+
+	ShowDto updateShow(ShowDto dto);
 		
 }
