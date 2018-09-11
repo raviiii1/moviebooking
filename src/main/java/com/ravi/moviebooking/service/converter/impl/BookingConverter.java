@@ -1,10 +1,10 @@
-package com.ravi.moviebooking.service.impl;
+package com.ravi.moviebooking.service.converter.impl;
 
 import org.springframework.stereotype.Component;
 
 import com.ravi.moviebooking.dto.impl.BookingDto;
 import com.ravi.moviebooking.model.impl.Booking;
-import com.ravi.moviebooking.service.Converter;
+import com.ravi.moviebooking.service.converter.Converter;
 
 @Component
 public class BookingConverter implements Converter<Booking, BookingDto>{

@@ -1,4 +1,4 @@
-package com.ravi.moviebooking.repository;
+package com.ravi.moviebooking.repository.jpa;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -15,6 +15,8 @@ public interface ShowRepository extends JpaRepository<Show, Long>{
 
 	List<Show> findAllByMovieIdAndCreatedAtBetween(Long movieId, LocalDateTime now, LocalDateTime plusDays);
 
+	List<Show> findAllByCreatedAtBetween(LocalDateTime now, LocalDateTime plusDays);
+	
 	List<Show> findAllByDateAndTime(LocalDate date, LocalTime time);
 
 	List<Show> findAllByTime(LocalTime time);

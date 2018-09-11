@@ -9,8 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.ravi.moviebooking.model.Bo;
-import com.ravi.moviebooking.service.impl.EmailIdMarshller;
-import com.ravi.moviebooking.service.impl.PhoneNumberMarshller;
+import com.ravi.moviebooking.service.marshaller.impl.EmailIdMarshaller;
+import com.ravi.moviebooking.service.marshaller.impl.PhoneNumberMarshaller;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,11 +30,11 @@ public class User implements Bo{
 	@Column
 	private String name;
 	
-	@Convert(converter = EmailIdMarshller.class)
+	@Convert(converter = EmailIdMarshaller.class)
 	@Column(name = "email_id")
 	private EmailId emailId;
 	
-	@Convert(converter = PhoneNumberMarshller.class)
+	@Convert(converter = PhoneNumberMarshaller.class)
 	@Column(name = "phone_number")
 	private PhoneNumber phoneNumber;
 }

@@ -2,12 +2,12 @@ package com.ravi.moviebooking.service;
 
 import java.util.List;
 
-import com.ravi.moviebooking.dto.impl.BookingDto;
+import com.ravi.moviebooking.model.impl.Booking;
 
 public interface BookingService {
 
-	public BookingDto book(BookingDto booking);
+	public Booking save(Booking booking);
 
-	public List<BookingDto> getBookingForUser(Long userId);
+	public List<Booking> getBookingForUser(Long userId);
 
 }

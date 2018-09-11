@@ -1,14 +1,14 @@
-package com.ravi.moviebooking.service.impl;
+package com.ravi.moviebooking.service.marshaller.impl;
 
 import org.springframework.stereotype.Component;
 
 import com.ravi.moviebooking.model.impl.EmailId;
-import com.ravi.moviebooking.service.JpaJsonMarshller;
+import com.ravi.moviebooking.service.marshaller.JpaJsonMarshaller;
 
 @Component
-public class EmailIdMarshller extends JpaJsonMarshller<EmailId>{
+public class EmailIdMarshaller extends JpaJsonMarshaller<EmailId>{
 
-	public EmailIdMarshller() {
+	public EmailIdMarshaller() {
 		super(EmailId.class);
 	}
 

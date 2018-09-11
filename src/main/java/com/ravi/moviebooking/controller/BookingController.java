@@ -14,25 +14,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ravi.moviebooking.dto.impl.BookingDto;
-import com.ravi.moviebooking.service.BookingService;
+import com.ravi.moviebooking.facade.BookingFacade;
 
 @Controller
 @RequestMapping(path = "/booking")
 public class BookingController {
 
 	@Autowired
-	BookingService service;
+	BookingFacade facade;
 	
 	@PostMapping("")
 	@ResponseBody
 	public BookingDto book(@Valid @RequestBody BookingDto booking){
-		return service.book(booking);
+		return facade.book(booking);
 	}
 	
 	@GetMapping("/user/{id}")
 	@ResponseBody
-	public List<BookingDto> getBookingForUser(@PathVariable("id") Long userId){
-		return service.getBookingForUser(userId);
+	public List<BookingDto> getForUser(@PathVariable("id") Long userId){
+		return facade.getBookingForUser(userId);
 	}
 	
 }

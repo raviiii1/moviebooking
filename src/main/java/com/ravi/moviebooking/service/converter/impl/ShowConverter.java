@@ -1,4 +1,4 @@
-package com.ravi.moviebooking.service.impl;
+package com.ravi.moviebooking.service.converter.impl;
 
 import javax.validation.constraints.NotEmpty;
 
@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 import com.ravi.moviebooking.dto.impl.ShowDto;
 import com.ravi.moviebooking.model.impl.CinemaHall;
 import com.ravi.moviebooking.model.impl.Show;
-import com.ravi.moviebooking.repository.CinemaHallRepository;
-import com.ravi.moviebooking.service.Converter;
+import com.ravi.moviebooking.repository.jpa.CinemaHallRepository;
+import com.ravi.moviebooking.service.converter.Converter;
 
 @Component
 public class ShowConverter implements Converter<Show, ShowDto> {

@@ -4,6 +4,6 @@ import com.ravi.moviebooking.dto.impl.UserDto;
 
 public interface UserService {
 
-	UserDto putUser(UserDto dto);
+	UserDto put(UserDto dto);
 
 }

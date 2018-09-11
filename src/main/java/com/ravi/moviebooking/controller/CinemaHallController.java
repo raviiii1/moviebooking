@@ -19,7 +19,7 @@ public class CinemaHallController {
 	
 	@PutMapping
 	@ResponseBody
-	public CinemaHallDto putCinemaHall(@RequestBody CinemaHallDto dto) {
-		return service.putCinemaHall(dto);
+	public CinemaHallDto put(@RequestBody CinemaHallDto dto) {
+		return service.put(dto);
 	}
 }

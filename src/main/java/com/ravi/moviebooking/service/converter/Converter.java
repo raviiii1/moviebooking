@@ -1,4 +1,4 @@
-package com.ravi.moviebooking.service;
+package com.ravi.moviebooking.service.converter;
 
 public interface Converter<Bo, Dto> {
 

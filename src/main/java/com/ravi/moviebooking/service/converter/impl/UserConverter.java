@@ -1,4 +1,4 @@
-package com.ravi.moviebooking.service.impl;
+package com.ravi.moviebooking.service.converter.impl;
 
 import org.springframework.stereotype.Component;
 
@@ -6,7 +6,7 @@ import com.ravi.moviebooking.dto.impl.UserDto;
 import com.ravi.moviebooking.model.impl.EmailId;
 import com.ravi.moviebooking.model.impl.PhoneNumber;
 import com.ravi.moviebooking.model.impl.User;
-import com.ravi.moviebooking.service.Converter;
+import com.ravi.moviebooking.service.converter.Converter;
 
 @Component
 public class UserConverter implements Converter<User, UserDto>{

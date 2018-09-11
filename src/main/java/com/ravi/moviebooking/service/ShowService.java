@@ -4,24 +4,26 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-import com.ravi.moviebooking.dto.impl.ShowDto;
+import com.ravi.moviebooking.model.impl.Show;
 
 public interface ShowService {
 
-	ShowDto getShow(Long showId);
+	Show put(Show show);
 
-	ShowDto putShow(ShowDto show);
+	Show update(Show show);
 
-	List<ShowDto> getMovieShows(Long movieId);
+	Show get(Long showId);
 
-	List<ShowDto> searchShows(LocalDate date, LocalTime time);
+	List<Show> getAll();
 
-	List<ShowDto> searchShows(LocalTime time);
+	List<Show> getRunningByMovieId(Long movieId);
+	
+	List<Show> getAllRunning();
 
-	List<ShowDto> searchShows(LocalDate date);
+	List<Show> getByDate(LocalDate date);
 
-	List<ShowDto> getAllShows();
+	List<Show> getByDateAndTime(LocalDate date, LocalTime time);
 
-	ShowDto updateShow(ShowDto dto);
-		
+	List<Show> getByTime(LocalTime time);
+	
 }

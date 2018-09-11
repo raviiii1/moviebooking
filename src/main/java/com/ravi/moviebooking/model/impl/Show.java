@@ -19,7 +19,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.ravi.moviebooking.model.Bo;
-import com.ravi.moviebooking.service.impl.SeatListMarshler;
+import com.ravi.moviebooking.service.marshaller.impl.SeatListMarshaller;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -52,10 +52,10 @@ public class Show implements Bo{
 	@Column(name = "movie_id")
 	Long movieId;
 	
-	@Convert(converter = SeatListMarshler.class)
+	@Convert(converter = SeatListMarshaller.class)
 	private List<Seat> booked;
 	
-	@Convert(converter = SeatListMarshler.class)
+	@Convert(converter = SeatListMarshaller.class)
 	private List<Seat> available;
 	
 	@CreationTimestamp

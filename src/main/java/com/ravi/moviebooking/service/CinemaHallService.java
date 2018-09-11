@@ -4,8 +4,8 @@ import com.ravi.moviebooking.dto.impl.CinemaHallDto;
 
 public interface CinemaHallService {
 
-	CinemaHallDto putCinemaHall(CinemaHallDto dto);
+	CinemaHallDto put(CinemaHallDto dto);
 
-	CinemaHallDto getCinemaHall(Long id);
+	CinemaHallDto get(Long id);
 	
 }

@@ -6,14 +6,14 @@ import com.ravi.moviebooking.dto.impl.MovieDto;
 
 public interface MovieService {
 
-	List<MovieDto> getAllActiveMovies();
+	List<MovieDto> getAllActive();
 
-	MovieDto getMovie(Long id);
+	MovieDto get(Long id);
 
-	List<MovieDto> getMovies(List<Long> movieIds);
+	List<MovieDto> getAll(List<Long> movieIds);
 
-	MovieDto putMovie(MovieDto movieDto);
+	MovieDto put(MovieDto movieDto);
 
-	boolean deleteMovie(Long id);
+	boolean delete(Long id);
 	
 }

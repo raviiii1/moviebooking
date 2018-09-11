@@ -1,14 +1,14 @@
-package com.ravi.moviebooking.service;
+package com.ravi.moviebooking.service.marshaller;
 
 import javax.persistence.AttributeConverter;
 
 import com.ravi.moviebooking.service.impl.JsonConverterUtility;
 
-public class JpaJsonMarshller<T> implements AttributeConverter<T, String> {
+public class JpaJsonMarshaller<T> implements AttributeConverter<T, String> {
 
     private Class<T> clazz;
     
-    public JpaJsonMarshller(Class<T> clazz) {
+    public JpaJsonMarshaller(Class<T> clazz) {
         this.clazz = clazz;
     }
 

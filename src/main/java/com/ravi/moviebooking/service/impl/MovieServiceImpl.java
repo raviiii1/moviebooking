@@ -8,8 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.ravi.moviebooking.dto.impl.MovieDto;
 import com.ravi.moviebooking.model.impl.Movie;
-import com.ravi.moviebooking.repository.MovieRepository;
+import com.ravi.moviebooking.repository.jpa.MovieRepository;
 import com.ravi.moviebooking.service.MovieService;
+import com.ravi.moviebooking.service.converter.impl.MovieConverter;
 
 @Service
 public class MovieServiceImpl implements MovieService {
@@ -21,13 +22,13 @@ public class MovieServiceImpl implements MovieService {
 	MovieConverter converter;
 
 	@Override
-	public List<MovieDto> getAllActiveMovies() {
+	public List<MovieDto> getAllActive() {
 		List<Movie> activeMovies = repository.findAllByActive(true);
 		return activeMovies.parallelStream().map(mov -> converter.convertToDto(mov)).collect(Collectors.toList());
 	}
 
 	@Override
-	public MovieDto getMovie(Long id) {
+	public MovieDto get(Long id) {
 		Movie movie = repository.findById(id).get();
 		if (movie != null)
 			return converter.convertToDto(movie);
@@ -35,19 +36,19 @@ public class MovieServiceImpl implements MovieService {
 	}
 
 	@Override
-	public List<MovieDto> getMovies(List<Long> movieIds) {
+	public List<MovieDto> getAll(List<Long> movieIds) {
 		List<Movie> movies = repository.findAllById(movieIds);
 		return movies.parallelStream().map(movie -> converter.convertToDto(movie)).collect(Collectors.toList());
 	}
 
 	@Override
-	public MovieDto putMovie(MovieDto movieDto) {
+	public MovieDto put(MovieDto movieDto) {
 		movieDto.setId(null);
 		return converter.convertToDto(repository.save(converter.convertToBo(movieDto)));
 	}
 
 	@Override
-	public boolean deleteMovie(Long id) {
+	public boolean delete(Long id) {
 		Movie movie = repository.findById(id).get();
 		if (movie != null) {
 			movie.setActive(false);

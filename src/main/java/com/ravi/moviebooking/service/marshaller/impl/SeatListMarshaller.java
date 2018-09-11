@@ -1,4 +1,4 @@
-package com.ravi.moviebooking.service.impl;
+package com.ravi.moviebooking.service.marshaller.impl;
 
 import java.util.List;
 
@@ -8,9 +8,10 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.ravi.moviebooking.model.impl.Seat;
+import com.ravi.moviebooking.service.impl.JsonConverterUtility;
 
 @Component
-public class SeatListMarshler implements AttributeConverter<List<Seat>, String> {
+public class SeatListMarshaller implements AttributeConverter<List<Seat>, String> {
 
 	@Override
 	public String convertToDatabaseColumn(List<Seat> attribute) {

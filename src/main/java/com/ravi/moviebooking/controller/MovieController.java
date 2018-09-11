@@ -24,25 +24,25 @@ public class MovieController {
 	
 	@GetMapping(path = "/all")
 	@ResponseBody
-	public List<MovieDto> getMovies(){
-		return service.getAllActiveMovies();
+	public List<MovieDto> getAll(){
+		return service.getAllActive();
 	}
 	
 	@GetMapping(path = "/{id}")
 	@ResponseBody
-	public MovieDto getMovie(@PathVariable("id") Long id){
-		return service.getMovie(id);
+	public MovieDto get(@PathVariable("id") Long id){
+		return service.get(id);
 	}
 	
 	@PutMapping(path = "")
 	@ResponseBody
-	public MovieDto getMovie(@RequestBody MovieDto movieDto){
-		return service.putMovie(movieDto);
+	public MovieDto get(@RequestBody MovieDto movieDto){
+		return service.put(movieDto);
 	}
 
 	@DeleteMapping(path = "/{id}")
 	@ResponseBody
-	public boolean deleteMovie(@PathVariable("id") Long id){
-		return service.deleteMovie(id);
+	public boolean delete(@PathVariable("id") Long id){
+		return service.delete(id);
 	}
 }

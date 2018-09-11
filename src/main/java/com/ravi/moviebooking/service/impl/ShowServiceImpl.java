@@ -4,85 +4,69 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ravi.moviebooking.dto.impl.CinemaHallDto;
-import com.ravi.moviebooking.dto.impl.ShowDto;
 import com.ravi.moviebooking.model.impl.Show;
-import com.ravi.moviebooking.repository.ShowRepository;
-import com.ravi.moviebooking.service.CinemaHallService;
-import com.ravi.moviebooking.service.MovieService;
+import com.ravi.moviebooking.repository.jpa.ShowRepository;
 import com.ravi.moviebooking.service.ShowService;
 
 @Service
 public class ShowServiceImpl implements ShowService {
 
+	private static final long SHOW_RUNNING_TIME = 7;
+
 	@Autowired
 	ShowRepository repository;
 
-	@Autowired
-	ShowConverter showConverter;
-
-	@Autowired
-	CinemaHallService cinemaHallService;
-
-	@Autowired
-	MovieService movieService;
+	@Override
+	public Show put(Show show) {
+		show.setId(null);
+		show.setBooked(null);
+		return repository.save(show);
+	}
 
 	@Override
-	public ShowDto putShow(ShowDto dto) {
-		dto.setId(null);
-		dto.setBooked(null);
-		CinemaHallDto cinemaHallDto = cinemaHallService.getCinemaHall(dto.getCinemaHallId());
-		if (cinemaHallDto != null)
-			dto.setAllAvailable(cinemaHallDto.getRowCount(), cinemaHallDto.getColumnCount());
-		return showConverter.convertToDto(repository.save(showConverter.convertToBo(dto)));
+	public Show update(Show show) {
+		return repository.save(show);
+	}
+
+	@Override
+	public Show get(Long showId) {
+		return repository.findById(showId).get();
+	}
+
+	@Override
+	public List<Show> getAll() {
+		return repository.findAll();
+	}
+
+	@Override
+	public List<Show> getRunningByMovieId(Long movieId) {
+		LocalDateTime now = LocalDateTime.now();
+		return repository.findAllByMovieIdAndCreatedAtBetween(movieId, now, now.plusDays(SHOW_RUNNING_TIME));
+	}
+
+	@Override
+	public List<Show> getAllRunning() {
+		LocalDateTime now = LocalDateTime.now();
+		return repository.findAllByCreatedAtBetween(now, now.plusDays(SHOW_RUNNING_TIME));
 	}
 	
 	@Override
-	public ShowDto updateShow(ShowDto dto) {
-		return showConverter.convertToDto(repository.save(showConverter.convertToBo(dto)));
+	public List<Show> getByDate(LocalDate date) {
+		return repository.findAllByDate(date);
 	}
 
 	@Override
-	public ShowDto getShow(Long showId) {
-		Show show = repository.findById(showId).get();
-		if (show == null)
-			return null;
-		return showConverter.convertToDto(show);
+	public List<Show> getByDateAndTime(LocalDate date, LocalTime time) {
+		return repository.findAllByDateAndTime(date, time);
 	}
 
 	@Override
-	public List<ShowDto> getMovieShows(Long movieId) {
-		LocalDateTime now = LocalDateTime.now();
-		List<Show> movieShows = repository.findAllByMovieIdAndCreatedAtBetween(movieId, now, now.plusDays(7));
-		return movieShows.parallelStream().map(show -> showConverter.convertToDto(show)).collect(Collectors.toList());
+	public List<Show> getByTime(LocalTime time) {
+		return repository.findAllByTime(time);
 	}
 
-	@Override
-	public List<ShowDto> searchShows(LocalDate date, LocalTime time) {
-		List<Show> movieShows = repository.findAllByDateAndTime(date, time);
-		return movieShows.parallelStream().map(show -> showConverter.convertToDto(show)).collect(Collectors.toList());
-	}
-
-	@Override
-	public List<ShowDto> searchShows(LocalTime time) {
-		List<Show> movieShows = repository.findAllByTime(time);
-		return movieShows.parallelStream().map(show -> showConverter.convertToDto(show)).collect(Collectors.toList());
-	}
-
-	@Override
-	public List<ShowDto> searchShows(LocalDate date) {
-		List<Show> movieShows = repository.findAllByDate(date);
-		return movieShows.parallelStream().map(show -> showConverter.convertToDto(show)).collect(Collectors.toList());
-	}
-
-	@Override
-	public List<ShowDto> getAllShows() {
-		List<Show> movieShows = repository.findAll();
-		return movieShows.parallelStream().map(show -> showConverter.convertToDto(show)).collect(Collectors.toList());
-	}
 }

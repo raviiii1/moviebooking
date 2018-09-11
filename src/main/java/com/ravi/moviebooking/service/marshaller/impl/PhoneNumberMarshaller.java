@@ -1,14 +1,14 @@
-package com.ravi.moviebooking.service.impl;
+package com.ravi.moviebooking.service.marshaller.impl;
 
 import org.springframework.stereotype.Component;
 
 import com.ravi.moviebooking.model.impl.PhoneNumber;
-import com.ravi.moviebooking.service.JpaJsonMarshller;
+import com.ravi.moviebooking.service.marshaller.JpaJsonMarshaller;
 
 @Component
-public class PhoneNumberMarshller extends JpaJsonMarshller<PhoneNumber>{
+public class PhoneNumberMarshaller extends JpaJsonMarshaller<PhoneNumber>{
 
-	public PhoneNumberMarshller() {
+	public PhoneNumberMarshaller() {
 		super(PhoneNumber.class);
 	}
 

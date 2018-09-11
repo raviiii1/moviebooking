@@ -1,4 +1,4 @@
-package com.ravi.moviebooking.repository;
+package com.ravi.moviebooking.repository.jpa;
 
 import java.util.List;
 

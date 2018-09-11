@@ -19,8 +19,8 @@ public class UserController {
 	
 	@PutMapping
 	@ResponseBody
-	public UserDto putUser(@RequestBody UserDto dto) {
-		return service.putUser(dto);
+	public UserDto put(@RequestBody UserDto dto) {
+		return service.put(dto);
 	}
 	
 }
